@@ -1,0 +1,128 @@
+@import 'tailwindcss';
+
+/*
+ * Open Docs design system
+ * -----------------------
+ * Tailwind v4 is configured here via the `@theme` block — there is no
+ * tailwind.config.js. The brand palette (50..950) is exposed as design tokens
+ * so `bg-brand-500`, `text-brand-300`, etc. all work, and the same values are
+ * available as raw CSS variables for hand-written CSS.
+ */
+
+@theme {
+  /* Warm amber brand accent — full 50..950 scale */
+  --color-brand-50: oklch(0.98 0.02 75);
+  --color-brand-100: oklch(0.95 0.04 75);
+  --color-brand-200: oklch(0.9 0.07 73);
+  --color-brand-300: oklch(0.84 0.11 70);
+  --color-brand-400: oklch(0.77 0.15 65);
+  --color-brand-500: oklch(0.7 0.17 55);
+  --color-brand-600: oklch(0.62 0.16 48);
+  --color-brand-700: oklch(0.52 0.14 45);
+  --color-brand-800: oklch(0.43 0.11 44);
+  --color-brand-900: oklch(0.36 0.08 45);
+  --color-brand-950: oklch(0.24 0.05 46);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, Monaco, 'Cascadia Code', monospace;
+
+  --radius: 0.75rem;
+}
+
+/*
+ * Semantic theme tokens. These map light/dark surfaces to a single set of
+ * variables that components reference (e.g. `bg-background`, `text-fg`).
+ * The dark theme is a near-black canvas with warm accents.
+ */
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --fg: oklch(0.2 0.01 60);
+    --muted: oklch(0.96 0.005 75);
+    --muted-fg: oklch(0.5 0.01 60);
+    --card: oklch(0.99 0.003 75);
+    --border: oklch(0.91 0.005 75);
+    --ring: var(--color-brand-500);
+    --accent: var(--color-brand-600);
+    --accent-fg: oklch(0.99 0 0);
+    --code-bg: oklch(0.97 0.004 75);
+  }
+
+  .dark {
+    --background: oklch(0.16 0.006 60);
+    --fg: oklch(0.93 0.005 75);
+    --muted: oklch(0.22 0.008 60);
+    --muted-fg: oklch(0.66 0.008 60);
+    --card: oklch(0.19 0.007 60);
+    --border: oklch(0.27 0.008 60);
+    --ring: var(--color-brand-400);
+    --accent: var(--color-brand-400);
+    --accent-fg: oklch(0.16 0.006 60);
+    --code-bg: oklch(0.2 0.007 60);
+  }
+
+  /* Expose semantic tokens to Tailwind utilities */
+  @theme inline {
+    --color-background: var(--background);
+    --color-fg: var(--fg);
+    --color-muted: var(--muted);
+    --color-muted-fg: var(--muted-fg);
+    --color-card: var(--card);
+    --color-border: var(--border);
+    --color-ring: var(--ring);
+    --color-accent: var(--accent);
+    --color-accent-fg: var(--accent-fg);
+    --color-code-bg: var(--code-bg);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: white;
+  }
+}
+
+/* Respect users who prefer reduced motion across the whole app. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Shiki / rehype-pretty-code dual-theme support */
+@layer base {
+  html.dark .shiki,
+  html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
