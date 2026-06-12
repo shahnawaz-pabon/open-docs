@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+dist
+coverage
+pnpm-lock.yaml
+public/search-index.json
+CHANGELOG.md
