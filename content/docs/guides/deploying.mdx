@@ -1,0 +1,37 @@
+---
+title: Deploying
+description: Build a static export and deploy Open Docs to GitHub Pages or any static host.
+order: 2
+---
+
+# Deploying
+
+Open Docs builds to a fully static site (`output: 'export'`), so it can be hosted
+anywhere — no server required.
+
+## Build
+
+```bash
+pnpm build
+```
+
+The static site is written to `out/`. You can preview it with any static file server:
+
+```bash
+npx serve out
+```
+
+## GitHub Pages
+
+The included workflow at `.github/workflows/deploy.yml` builds and deploys to GitHub Pages
+on every push to `main`. For project sites served from a sub-path, set the `BASE_PATH`
+environment variable so asset URLs resolve correctly:
+
+```bash
+BASE_PATH=/my-repo pnpm build
+```
+
+## Other hosts
+
+Because the output is plain HTML, CSS, and JS, you can drop `out/` onto Netlify, Vercel,
+Cloudflare Pages, S3 + CloudFront, or any static host.

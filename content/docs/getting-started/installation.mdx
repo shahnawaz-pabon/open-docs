@@ -1,0 +1,35 @@
+---
+title: Installation
+description: Install Open Docs manually or clone the template, and learn the available scripts.
+order: 1
+---
+
+# Installation
+
+Prefer to set things up by hand? Clone the repository and install dependencies.
+
+## Manual setup
+
+```bash
+git clone https://github.com/shahnawaz-pabon/open-docs.git my-docs
+cd my-docs
+pnpm install
+pnpm dev
+```
+
+## Available scripts
+
+| Script               | Description                                       |
+| -------------------- | ------------------------------------------------- |
+| `pnpm dev`           | Start the development server                      |
+| `pnpm build`         | Build the static export into `out/`               |
+| `pnpm lint`          | Run ESLint                                        |
+| `pnpm typecheck`     | Type-check with the TypeScript compiler           |
+| `pnpm test`          | Run the Vitest suite                              |
+| `pnpm test:coverage` | Run tests with a coverage report (90% threshold)  |
+
+## Configuration
+
+Open Docs reads configuration from `next.config.mjs`. The most common change is the
+`BASE_PATH` environment variable, used when deploying to a sub-path such as a GitHub Pages
+project site.

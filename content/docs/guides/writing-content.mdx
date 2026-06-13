@@ -1,0 +1,49 @@
+---
+title: Writing Content
+description: How to structure folders, write frontmatter, and control navigation with meta.json.
+order: 1
+---
+
+# Writing Content
+
+All documentation lives in `content/docs` as `.mdx` files. The folder structure maps
+directly to URLs.
+
+## Frontmatter
+
+Every page starts with YAML frontmatter:
+
+```mdx
+---
+title: Writing Content
+description: A one-line summary shown in search and metadata.
+order: 1
+---
+```
+
+| Field         | Required | Description                                          |
+| ------------- | -------- | ---------------------------------------------------- |
+| `title`       | Yes      | Page title (heading, sidebar label, browser title)   |
+| `description` | No       | Summary used for search and SEO metadata             |
+| `order`       | No       | Sort hint within a folder (lower comes first)        |
+| `hidden`      | No       | Keep the page routable but out of nav and search     |
+
+## Folders and routing
+
+A file at `content/docs/guides/writing-content.mdx` is served at
+`/docs/guides/writing-content`. An `index.mdx` represents its folder, so
+`content/docs/guides/index.mdx` is served at `/docs/guides`.
+
+## Controlling navigation
+
+Add a `meta.json` to any folder to set its sidebar title and order its children:
+
+```json
+{
+  "title": "Guides",
+  "pages": ["index", "writing-content", "deploying"]
+}
+```
+
+Pages not listed in `pages` still appear — they're sorted after the listed ones by
+`order`, then alphabetically.
