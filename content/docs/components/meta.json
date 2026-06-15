@@ -1,0 +1,13 @@
+{
+  "title": "Components",
+  "pages": [
+    "index",
+    "callout",
+    "cards",
+    "tabs",
+    "steps",
+    "code-block",
+    "file-tree",
+    "badge"
+  ]
+}

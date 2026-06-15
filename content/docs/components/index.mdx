@@ -1,0 +1,46 @@
+---
+title: Components
+description: The built-in MDX component library — accessible, themeable building blocks you can use directly in any .mdx file with no imports.
+order: 0
+---
+
+# Components
+
+Open Docs ships a small, focused library of MDX components. They are registered
+globally, so you can use them in any `.mdx` file **without importing anything**.
+
+<Callout type="tip" title="Source-code ownership">
+  Every component lives in `components/mdx/` as plain, readable TSX. Fork it,
+  restyle it, or delete what you don't need.
+</Callout>
+
+## What's included
+
+<Cards>
+  <Card title="Callout" href="/docs/components/callout">
+    Highlighted asides for notes, tips, warnings, and errors.
+  </Card>
+  <Card title="Cards" href="/docs/components/cards">
+    Responsive grids of linkable content cards.
+  </Card>
+  <Card title="Tabs" href="/docs/components/tabs">
+    Accessible tabbed panels built on Radix UI.
+  </Card>
+  <Card title="Steps" href="/docs/components/steps">
+    Numbered walkthroughs for sequential instructions.
+  </Card>
+  <Card title="Code Block" href="/docs/components/code-block">
+    Titled code blocks with a copy-to-clipboard button.
+  </Card>
+  <Card title="File Tree" href="/docs/components/file-tree">
+    Render directory structures from a data model.
+  </Card>
+  <Card title="Badge" href="/docs/components/badge">
+    Small status and label pills. <Badge variant="success">new</Badge>
+  </Card>
+</Cards>
+
+## Registering your own
+
+All components are wired up in `components/mdx/index.ts`. To add one, export it
+from that file's `customMdxComponents` map and it becomes available everywhere.

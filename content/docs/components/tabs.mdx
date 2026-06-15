@@ -1,0 +1,48 @@
+---
+title: Tabs
+description: Accessible tabbed panels built on Radix UI.
+order: 3
+---
+
+# Tabs
+
+`Tabs` groups related content into switchable panels. It's built on Radix UI, so
+you get roving focus, arrow-key navigation, and full ARIA wiring for free.
+
+## Usage
+
+```mdx
+<Tabs>
+  <Tab value="pnpm">Run `pnpm install`.</Tab>
+  <Tab value="npm">Run `npm install`.</Tab>
+  <Tab value="yarn">Run `yarn`.</Tab>
+</Tabs>
+```
+
+## Example
+
+<Tabs>
+  <Tab value="pnpm">
+    Install dependencies with `pnpm install`.
+  </Tab>
+  <Tab value="npm">
+    Install dependencies with `npm install`.
+  </Tab>
+  <Tab value="yarn">
+    Install dependencies with `yarn`.
+  </Tab>
+</Tabs>
+
+## Props
+
+### `Tabs`
+
+| Prop           | Type     | Default     | Description                          |
+| -------------- | -------- | ----------- | ------------------------------------ |
+| `defaultValue` | `string` | first tab   | The tab selected on first render.    |
+
+### `Tab`
+
+| Prop    | Type     | Description                                        |
+| ------- | -------- | ------------------------------------------------- |
+| `value` | `string` | Trigger label and (slugified) panel key.          |

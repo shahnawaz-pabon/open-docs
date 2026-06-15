@@ -1,0 +1,35 @@
+---
+title: Badge
+description: Small status and label pills.
+order: 7
+---
+
+# Badge
+
+`Badge` renders a compact pill for statuses, labels, and inline tags. It comes
+with six variants.
+
+## Usage
+
+```mdx
+<Badge>default</Badge>
+<Badge variant="success">passing</Badge>
+<Badge variant="danger">deprecated</Badge>
+```
+
+## Variants
+
+<p className="flex flex-wrap gap-2">
+  <Badge>default</Badge>
+  <Badge variant="secondary">secondary</Badge>
+  <Badge variant="outline">outline</Badge>
+  <Badge variant="success">success</Badge>
+  <Badge variant="warning">warning</Badge>
+  <Badge variant="danger">danger</Badge>
+</p>
+
+## Props
+
+| Prop      | Type                                                                          | Default     |
+| --------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant` | `'default' \| 'secondary' \| 'outline' \| 'success' \| 'warning' \| 'danger'` | `'default'` |

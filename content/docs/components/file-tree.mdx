@@ -1,0 +1,64 @@
+---
+title: File Tree
+description: Render directory structures from a data model.
+order: 6
+---
+
+# File Tree
+
+`FileTree` visualizes a directory structure from a nested data model. Folders
+are inferred from the presence of a `children` array.
+
+## Usage
+
+```mdx
+<FileTree
+  tree={[
+    {
+      name: 'app',
+      children: [
+        { name: 'layout.tsx' },
+        { name: 'page.tsx', highlight: true },
+      ],
+    },
+    { name: 'package.json' },
+  ]}
+/>
+```
+
+## Example
+
+<FileTree
+  tree={[
+    {
+      name: 'app',
+      defaultOpen: true,
+      children: [
+        { name: 'layout.tsx' },
+        { name: 'page.tsx', highlight: true, comment: 'homepage' },
+        {
+          name: 'docs',
+          children: [{ name: '[[...slug]]', children: [{ name: 'page.tsx' }] }],
+        },
+      ],
+    },
+    { name: 'content', children: [{ name: 'docs', comment: 'your .mdx files' }] },
+    { name: 'package.json' },
+  ]}
+/>
+
+## Props
+
+| Prop   | Type             | Description                       |
+| ------ | ---------------- | --------------------------------- |
+| `tree` | `FileTreeNode[]` | The directory structure to show.  |
+
+### `FileTreeNode`
+
+| Field         | Type             | Description                                  |
+| ------------- | ---------------- | -------------------------------------------- |
+| `name`        | `string`         | File or folder name.                         |
+| `children`    | `FileTreeNode[]` | Marks the node as a folder.                  |
+| `defaultOpen` | `boolean`        | Show children (folders only).                |
+| `highlight`   | `boolean`        | Visually emphasize the entry.                |
+| `comment`     | `string`         | Dimmed inline annotation.                    |
