@@ -1,0 +1,79 @@
+import { ArrowRight, GitFork, Star } from 'lucide-react'
+import Link from 'next/link'
+
+import { LogoMark } from '@/components/logo'
+import { buttonVariants } from '@/components/ui/button'
+import { Reveal } from './reveal'
+
+const REPO_URL = 'https://github.com/shahnawaz-pabon/open-docs'
+
+/** Landing hero: headline, subhead, primary CTAs, and an install one-liner. */
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      {/* Soft brand glow backdrop */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,var(--color-brand-500)/12%,transparent_70%)]"
+      />
+      <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24">
+        <Reveal>
+          <Link
+            href="/docs"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-fg transition-colors hover:text-fg"
+          >
+            <span className="inline-flex size-4 items-center justify-center">
+              <LogoMark className="size-4" />
+            </span>
+            MIT licensed · zero lock-in
+            <ArrowRight className="size-3" />
+          </Link>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-6xl">
+            Documentation your team is{' '}
+            <span className="text-accent">proud to ship</span>
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted-fg">
+            Open Docs is a production-grade documentation template built on
+            Next.js, MDX, and Tailwind CSS. No framework to learn — just
+            source code you own and can read top to bottom.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/docs/getting-started"
+              className={buttonVariants({ size: 'lg' })}
+            >
+              Get started
+              <ArrowRight className="size-4" />
+            </Link>
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={buttonVariants({ variant: 'outline', size: 'lg' })}
+            >
+              <GitFork className="size-4" />
+              Star on GitHub
+              <Star className="size-4" />
+            </a>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mx-auto mt-10 flex max-w-md items-center justify-center gap-3 rounded-xl border border-border bg-card px-4 py-3 font-mono text-sm">
+            <span className="text-muted-fg select-none">$</span>
+            <code className="text-fg">npx create-open-docs@latest</code>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
