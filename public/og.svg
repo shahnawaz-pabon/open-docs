@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1714"/>
+      <stop offset="1" stop-color="#111014"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0" r="0.8">
+      <stop offset="0" stop-color="#d97706" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#d97706" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="1" y="1" width="1198" height="628" rx="0" stroke="#2a2622" stroke-width="2"/>
+
+  <!-- brand mark -->
+  <g transform="translate(96 96)">
+    <rect width="96" height="96" rx="24" fill="#d97706"/>
+    <path d="M27 31.5C27 29 29 27 31.5 27H45v42h-13.5A4.5 4.5 0 0 1 27 64.5v-33Z" fill="#fffbeb" opacity="0.92"/>
+    <path d="M51 27h13.5c2.5 0 4.5 2 4.5 4.5v33c0 2.5-2 4.5-4.5 4.5H51V27Z" fill="#fffbeb" opacity="0.6"/>
+  </g>
+
+  <text x="220" y="170" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="600" fill="#f5f3f0">Open Docs</text>
+
+  <text x="96" y="350" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="76" font-weight="700" fill="#f5f3f0" letter-spacing="-1.5">Documentation your team</text>
+  <text x="96" y="438" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="76" font-weight="700" letter-spacing="-1.5"><tspan fill="#f5f3f0">is proud to </tspan><tspan fill="#f59e0b">ship</tspan></text>
+
+  <text x="96" y="520" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" fill="#a8a29e">Next.js · MDX · Tailwind CSS · MIT licensed · Zero lock-in</text>
+</svg>
