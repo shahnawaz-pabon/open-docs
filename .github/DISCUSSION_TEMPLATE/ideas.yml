@@ -1,0 +1,20 @@
+title: "[Idea] "
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: Describe the idea or improvement you'd like to discuss.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem would this solve, or what value would it add?
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional details
+      description: Mockups, references, prior art, or anything else relevant.

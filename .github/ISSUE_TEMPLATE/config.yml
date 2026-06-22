@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/shahnawaz-pabon/open-docs/discussions
+    about: Ask questions, share ideas, and get help from the community.
+  - name: 📖 Documentation
+    url: https://shahnawaz-pabon.github.io/open-docs
+    about: Read the Open Docs documentation.
