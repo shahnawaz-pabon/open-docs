@@ -1,0 +1,35 @@
+{
+  "name": "create-open-docs",
+  "version": "0.1.0",
+  "description": "Scaffold a new Open Docs documentation site.",
+  "license": "MIT",
+  "author": "SHAHNAWAZ HOSSAN",
+  "type": "module",
+  "homepage": "https://github.com/shahnawaz-pabon/open-docs/tree/main/packages/create-open-docs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shahnawaz-pabon/open-docs.git",
+    "directory": "packages/create-open-docs"
+  },
+  "bin": {
+    "create-open-docs": "./bin/index.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "template"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "open-docs",
+    "documentation",
+    "scaffold",
+    "cli",
+    "create"
+  ],
+  "scripts": {
+    "test": "node --test"
+  }
+}
