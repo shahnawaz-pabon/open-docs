@@ -1,0 +1,42 @@
+---
+title: Steps
+description: Numbered walkthroughs for sequential instructions.
+order: 4
+---
+
+# Steps
+
+`Steps` renders an automatically-numbered vertical sequence. Numbers are derived
+from position using a CSS counter, so reordering or adding steps just works.
+
+## Usage
+
+```mdx
+<Steps>
+  <Step title="Install">Add the package to your project.</Step>
+  <Step title="Configure">Create a config file.</Step>
+  <Step title="Run">Start the dev server.</Step>
+</Steps>
+```
+
+## Example
+
+<Steps>
+  <Step title="Install dependencies">
+    Run `pnpm install` in the project root.
+  </Step>
+  <Step title="Add content">
+    Create `.mdx` files under `content/docs/`.
+  </Step>
+  <Step title="Start the dev server">
+    Run `pnpm dev` and open `http://localhost:3000`.
+  </Step>
+</Steps>
+
+## Props
+
+### `Step`
+
+| Prop    | Type     | Description                       |
+| ------- | -------- | --------------------------------- |
+| `title` | `string` | Optional heading for the step.    |

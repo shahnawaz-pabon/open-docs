@@ -1,0 +1,44 @@
+---
+title: Code Block
+description: Titled code blocks with a copy-to-clipboard button.
+order: 5
+---
+
+# Code Block
+
+Fenced code in MDX is automatically syntax-highlighted by
+[`rehype-pretty-code`](https://rehype-pretty.pages.dev/) using Shiki, with
+matched light and dark themes:
+
+```tsx
+export function greet(name: string): string {
+  return `Hello, ${name}!`
+}
+```
+
+When you want an explicit filename header and a copy button, use the
+`CodeBlock` component as a wrapper.
+
+## Usage
+
+````mdx
+<CodeBlock title="lib/config.ts" language="ts">
+  ```ts
+  export const config = { siteName: 'Open Docs' }
+  ```
+</CodeBlock>
+````
+
+## Example
+
+<CodeBlock title="lib/config.ts" language="ts" code="export const config = { siteName: 'Open Docs' }">
+  <code>export const config = &#123; siteName: 'Open Docs' &#125;</code>
+</CodeBlock>
+
+## Props
+
+| Prop       | Type     | Description                                          |
+| ---------- | -------- | ---------------------------------------------------- |
+| `title`    | `string` | Filename/label shown in the header.                  |
+| `language` | `string` | Language tag (used as the header label fallback).    |
+| `code`     | `string` | Raw text to copy (defaults to rendered text).        |

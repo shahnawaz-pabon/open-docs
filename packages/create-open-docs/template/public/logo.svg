@@ -1,0 +1,6 @@
+<svg width="160" height="32" viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="8" fill="#d97706"/>
+  <path d="M9 10.5C9 9.67 9.67 9 10.5 9H15v14h-4.5A1.5 1.5 0 0 1 9 21.5v-11Z" fill="#fffbeb" opacity="0.9"/>
+  <path d="M17 9h4.5c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5H17V9Z" fill="#fffbeb" opacity="0.6"/>
+  <text x="42" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="currentColor">Open Docs</text>
+</svg>

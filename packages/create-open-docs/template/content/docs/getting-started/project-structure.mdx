@@ -1,0 +1,35 @@
+---
+title: Project Structure
+description: A tour of the Open Docs repository layout and what each directory is responsible for.
+order: 2
+---
+
+# Project Structure
+
+Open Docs follows a clean, predictable layout. Every directory has a single
+responsibility and contains no hidden magic.
+
+```text
+open-docs/
+├── app/            # Next.js App Router routes and layouts
+├── components/     # UI: MDX components, docs chrome, search, marketing
+├── content/docs/   # Your documentation, written in MDX
+├── lib/            # Pure logic: content loader, slug, TOC, nav, search
+├── hooks/          # Reusable client hooks
+├── styles/         # Tailwind v4 globals and the brand token scale
+├── public/         # Static assets and the generated search index
+├── scripts/        # Build-time scripts (search index generation)
+└── tests/          # Vitest unit tests
+```
+
+## The content pipeline
+
+Everything in `content/docs` is parsed by the helpers in `lib/`:
+
+- `lib/content.ts` walks the tree and parses frontmatter with `gray-matter`.
+- `lib/headings.ts` extracts headings and builds the table of contents.
+- `lib/navigation.ts` assembles the sidebar tree and previous/next links.
+- `lib/search.ts` produces the searchable records baked into the index.
+
+Because these are pure functions, they're fully unit-tested and easy for both humans and
+AI assistants to reason about.

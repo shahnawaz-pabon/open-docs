@@ -1,0 +1,32 @@
+---
+title: Getting Started
+description: Get a new Open Docs site running in under a minute.
+order: 0
+---
+
+# Getting Started
+
+The fastest way to start is the CLI, which scaffolds a fresh project and installs
+dependencies for you.
+
+## Create a project
+
+```bash
+npx create-open-docs@latest my-docs
+cd my-docs
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) and you'll see your new docs site.
+
+## Requirements
+
+- **Node.js 20+**
+- A package manager — **pnpm** (recommended), npm, or yarn
+
+## What happens next
+
+The generator prompts you for a project name, a brand color, and a package manager, then
+copies the template and installs dependencies. From there, you write Markdown in
+`content/docs` and everything else — navigation, search, the table of contents — updates
+automatically.

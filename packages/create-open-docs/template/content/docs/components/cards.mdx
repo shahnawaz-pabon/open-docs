@@ -1,0 +1,51 @@
+---
+title: Cards
+description: Responsive grids of linkable content cards.
+order: 2
+---
+
+# Cards
+
+`Cards` lays out a responsive grid; each `Card` is an optionally-linkable panel.
+External `href`s open in a new tab automatically.
+
+## Usage
+
+```mdx
+<Cards>
+  <Card title="Installation" href="/docs/getting-started/installation">
+    Get up and running in under a minute.
+  </Card>
+  <Card title="GitHub" href="https://github.com/shahnawaz-pabon/open-docs">
+    Star the repo and contribute.
+  </Card>
+</Cards>
+```
+
+## Example
+
+<Cards>
+  <Card title="Installation" href="/docs/getting-started/installation">
+    Get up and running in under a minute.
+  </Card>
+  <Card title="Writing Content" href="/docs/guides/writing-content">
+    Learn the frontmatter and `meta.json` conventions.
+  </Card>
+  <Card title="Static (no link)">
+    A card without an `href` renders as a plain panel.
+  </Card>
+  <Card title="GitHub" href="https://github.com/shahnawaz-pabon/open-docs">
+    External links show an arrow and open in a new tab.
+  </Card>
+</Cards>
+
+## Props
+
+### `Card`
+
+| Prop       | Type        | Description                                       |
+| ---------- | ----------- | ------------------------------------------------- |
+| `title`    | `string`    | Card heading (required).                          |
+| `href`     | `string`    | Makes the whole card a link.                      |
+| `icon`     | `ReactNode` | Optional leading icon.                            |
+| `children` | `ReactNode` | Card body content.                                |

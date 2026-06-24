@@ -1,0 +1,48 @@
+---
+title: Callout
+description: Highlighted asides for notes, tips, warnings, and errors.
+order: 1
+---
+
+# Callout
+
+Use `Callout` to draw attention to supplementary information. It supports five
+types, an optional title, and a custom icon.
+
+## Usage
+
+```mdx
+<Callout type="tip" title="Pro tip">
+  You can use **markdown** inside a callout.
+</Callout>
+```
+
+## Types
+
+<Callout type="note" title="Note">
+  A neutral aside that uses the default surface colors.
+</Callout>
+
+<Callout type="info" title="Info">
+  Informational context, tinted blue.
+</Callout>
+
+<Callout type="tip" title="Tip">
+  A helpful suggestion, tinted green.
+</Callout>
+
+<Callout type="warning" title="Warning">
+  Something to be careful about, tinted amber.
+</Callout>
+
+<Callout type="danger" title="Danger">
+  A destructive or breaking action, tinted red.
+</Callout>
+
+## Props
+
+| Prop      | Type                                                  | Default  | Description                          |
+| --------- | ----------------------------------------------------- | -------- | ------------------------------------ |
+| `type`    | `'note' \| 'info' \| 'tip' \| 'warning' \| 'danger'` | `'note'` | Visual style and default icon.       |
+| `title`   | `string`                                              | —        | Optional bold heading.               |
+| `icon`    | `ReactNode`                                            | —        | Override the icon; `null` hides it.  |
