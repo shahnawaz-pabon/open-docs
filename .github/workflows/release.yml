@@ -34,14 +34,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Opens/updates a "Version Packages" PR, or publishes when that PR merges.
-      # Publishing also tags the release and creates a GitHub Release page.
-      - name: Create release PR or publish
-        uses: changesets/action@v1
-        with:
-          version: pnpm version
-          publish: pnpm release
-          createGithubReleases: true
+      # Consume changesets, bump versions, publish to npm, and push the
+      # version commit + tags back to main — no intermediate PR.
+      - name: Version and publish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          pnpm exec changeset version
+          git add -A
+          git diff --staged --quiet || git commit -m "ci: version packages [skip ci]"
+          pnpm exec changeset publish
+          git push --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
