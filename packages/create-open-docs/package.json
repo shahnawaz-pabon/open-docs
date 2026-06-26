@@ -1,5 +1,5 @@
 {
-  "name": "create-open-docs",
+  "name": "@opendocs/create",
   "version": "0.1.0",
   "description": "Scaffold a new Open Docs documentation site.",
   "license": "MIT",
@@ -8,11 +8,14 @@
   "homepage": "https://github.com/shahnawaz-pabon/open-docs/tree/main/packages/create-open-docs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shahnawaz-pabon/open-docs.git",
+    "url": "git+https://github.com/shahnawaz-pabon/open-docs.git",
     "directory": "packages/create-open-docs"
   },
   "bin": {
-    "create-open-docs": "./bin/index.mjs"
+    "create-open-docs": "bin/index.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "bin",

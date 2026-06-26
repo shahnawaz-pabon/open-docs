@@ -1,4 +1,4 @@
-# create-open-docs
+# @opendocs/create
 
 Scaffold a new [Open Docs](https://github.com/shahnawaz-pabon/open-docs)
 documentation site in seconds.
@@ -6,17 +6,17 @@ documentation site in seconds.
 ## Usage
 
 ```bash
-npx create-open-docs@latest
+npx @opendocs/create@latest
 # or
-pnpm create open-docs
+pnpm create @opendocs
 # or
-yarn create open-docs
+yarn create @opendocs
 ```
 
 You can pass the project name directly:
 
 ```bash
-npx create-open-docs@latest my-docs
+npx @opendocs/create@latest my-docs
 ```
 
 ## What it does

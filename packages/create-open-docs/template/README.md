@@ -1,7 +1,7 @@
 # Open Docs site
 
 This project was scaffolded with
-[`create-open-docs`](https://github.com/shahnawaz-pabon/open-docs).
+[`@opendocs/create`](https://github.com/shahnawaz-pabon/open-docs).
 
 ## Getting started
 
@@ -20,13 +20,13 @@ the page head, search, and navigation.
 
 ## Scripts
 
-| Script               | Description                          |
-| -------------------- | ------------------------------------ |
-| `pnpm dev`           | Start the dev server                 |
-| `pnpm build`         | Build the static export (`out/`)     |
-| `pnpm lint`          | Lint with ESLint                     |
-| `pnpm typecheck`     | Type-check with TypeScript           |
-| `pnpm test`          | Run the test suite                   |
+| Script           | Description                      |
+| ---------------- | -------------------------------- |
+| `pnpm dev`       | Start the dev server             |
+| `pnpm build`     | Build the static export (`out/`) |
+| `pnpm lint`      | Lint with ESLint                 |
+| `pnpm typecheck` | Type-check with TypeScript       |
+| `pnpm test`      | Run the test suite               |
 
 ## Customizing
 

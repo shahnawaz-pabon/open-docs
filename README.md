@@ -28,7 +28,7 @@ that you own and can read top to bottom.
 
 ```bash
 # Scaffold a new project
-npx create-open-docs@latest
+npx @opendocs/create@latest
 
 # …or clone this repository
 git clone https://github.com/shahnawaz-pabon/open-docs.git
@@ -41,15 +41,15 @@ Open [http://localhost:3000](http://localhost:3000) to see your docs.
 
 ## 📦 Scripts
 
-| Script               | Description                                  |
-| -------------------- | -------------------------------------------- |
-| `pnpm dev`           | Start the dev server                         |
-| `pnpm build`         | Build the static export (`out/`)             |
-| `pnpm lint`          | Run ESLint                                   |
-| `pnpm typecheck`     | Run the TypeScript compiler (no emit)        |
-| `pnpm test`          | Run the Vitest unit suite                    |
-| `pnpm test:coverage` | Run tests with coverage (90% threshold)      |
-| `pnpm format`        | Format with Prettier                         |
+| Script               | Description                             |
+| -------------------- | --------------------------------------- |
+| `pnpm dev`           | Start the dev server                    |
+| `pnpm build`         | Build the static export (`out/`)        |
+| `pnpm lint`          | Run ESLint                              |
+| `pnpm typecheck`     | Run the TypeScript compiler (no emit)   |
+| `pnpm test`          | Run the Vitest unit suite               |
+| `pnpm test:coverage` | Run tests with coverage (90% threshold) |
+| `pnpm format`        | Format with Prettier                    |
 
 ## 📝 Writing content
 

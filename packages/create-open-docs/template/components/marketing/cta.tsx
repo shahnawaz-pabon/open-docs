@@ -11,23 +11,19 @@ export function CTA() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center sm:px-12">
+        <div className="border-border bg-card relative overflow-hidden rounded-3xl border px-6 py-16 text-center sm:px-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_50%_0%,var(--color-brand-500)/14%,transparent_75%)]"
           />
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             Ship documentation you&apos;re proud of
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-balance text-lg text-muted-fg">
-            Scaffold a new project in seconds, or read the docs to see what Open
-            Docs can do.
+          <p className="text-muted-fg mx-auto mt-4 max-w-xl text-lg text-balance">
+            Scaffold a new project in seconds, or read the docs to see what Open Docs can do.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/docs/getting-started"
-              className={buttonVariants({ size: 'lg' })}
-            >
+            <Link href="/docs/getting-started" className={buttonVariants({ size: 'lg' })}>
               Read the docs
               <ArrowRight className="size-4" />
             </Link>
@@ -41,9 +37,7 @@ export function CTA() {
               View on GitHub
             </a>
           </div>
-          <p className="mt-6 font-mono text-sm text-muted-fg">
-            npx create-open-docs@latest
-          </p>
+          <p className="text-muted-fg mt-6 font-mono text-sm">npx @opendocs/create@latest</p>
         </div>
       </Reveal>
     </section>
