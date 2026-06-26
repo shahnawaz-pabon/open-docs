@@ -28,7 +28,7 @@ that you own and can read top to bottom.
 
 ```bash
 # Scaffold a new project
-npx @opendocs/create@latest
+npx @opendocsjs/create@latest
 
 # …or clone this repository
 git clone https://github.com/shahnawaz-pabon/open-docs.git

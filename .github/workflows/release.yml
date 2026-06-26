@@ -34,15 +34,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
-
       # Opens/updates a "Version Packages" PR, or publishes when that PR merges.
+      # Publishing also tags the release and creates a GitHub Release page.
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:
           version: pnpm version
           publish: pnpm release
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

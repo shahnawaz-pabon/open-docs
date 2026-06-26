@@ -66,7 +66,7 @@ export function Hero() {
         <Reveal delay={0.2}>
           <div className="border-border bg-card mx-auto mt-10 flex max-w-md items-center justify-center gap-3 rounded-xl border px-4 py-3 font-mono text-sm">
             <span className="text-muted-fg select-none">$</span>
-            <code className="text-fg">npx @opendocs/create@latest</code>
+            <code className="text-fg">npx @opendocsjs/create@latest</code>
           </div>
         </Reveal>
       </div>

@@ -1,7 +1,7 @@
 # Open Docs site
 
 This project was scaffolded with
-[`@opendocs/create`](https://github.com/shahnawaz-pabon/open-docs).
+[`@opendocsjs/create`](https://github.com/shahnawaz-pabon/open-docs).
 
 ## Getting started
 

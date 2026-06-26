@@ -1,5 +1,5 @@
 {
-  "name": "@opendocs/create",
+  "name": "@opendocsjs/create",
   "version": "0.1.0",
   "description": "Scaffold a new Open Docs documentation site.",
   "license": "MIT",

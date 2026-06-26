@@ -37,7 +37,7 @@ export function CTA() {
               View on GitHub
             </a>
           </div>
-          <p className="text-muted-fg mt-6 font-mono text-sm">npx @opendocs/create@latest</p>
+          <p className="text-muted-fg mt-6 font-mono text-sm">npx @opendocsjs/create@latest</p>
         </div>
       </Reveal>
     </section>
