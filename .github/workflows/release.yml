@@ -6,8 +6,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
-  id-token: write
 
 concurrency:
   group: release-${{ github.ref }}
@@ -15,7 +13,7 @@ concurrency:
 
 jobs:
   release:
-    name: Version or Publish
+    name: Version and tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,23 +27,70 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Consume changesets, bump versions, publish to npm, and push the
-      # version commit + tags back to main — no intermediate PR.
-      - name: Version and publish
+      # Consume pending changesets and bump versions/changelogs. npm publishing
+      # is intentionally done manually (the npm account requires 2FA), so this
+      # workflow stops at tagging + a GitHub Release.
+      - name: Version packages
+        id: version
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           pnpm exec changeset version
           git add -A
-          git diff --staged --quiet || git commit -m "ci: version packages [skip ci]"
-          pnpm exec changeset publish
+
+          # No staged changes means there were no pending changesets — nothing
+          # to release on this push.
+          if git diff --staged --quiet; then
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "No pending changesets; skipping release."
+            exit 0
+          fi
+
+          VERSION="$(node -p "require('./packages/create-open-docs/package.json').version")"
+          TAG="@opendocsjs/create@${VERSION}"
+
+          git commit -m "ci: version packages [skip ci]"
+          git tag "$TAG"
           git push --follow-tags
+
+          echo "released=true" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      # Pull the just-released section out of the changelog to use as the
+      # GitHub Release body. Falls back to a generic note if parsing finds
+      # nothing.
+      - name: Extract release notes
+        if: steps.version.outputs.released == 'true'
+        id: notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES="$(awk -v v="## $VERSION" '
+            $0 == v { capture = 1; next }
+            capture && /^## / { exit }
+            capture { print }
+          ' packages/create-open-docs/CHANGELOG.md)"
+
+          if [ -z "$(echo "$NOTES" | tr -d '[:space:]')" ]; then
+            NOTES="Release ${VERSION}."
+          fi
+
+          {
+            echo "body<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.released == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "${{ steps.version.outputs.tag }}" \
+            --notes "${{ steps.notes.outputs.body }}"
