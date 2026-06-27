@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { LogoMark } from '@/components/logo'
 import { buttonVariants } from '@/components/ui/button'
+import { HeroGlow } from './hero-glow'
 import { Reveal } from './reveal'
 
 const REPO_URL = 'https://github.com/shahnawaz-pabon/open-docs'
@@ -11,11 +12,8 @@ const REPO_URL = 'https://github.com/shahnawaz-pabon/open-docs'
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Soft brand glow backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,var(--color-brand-500)/12%,transparent_70%)]"
-      />
+      {/* Animated brand glow backdrop (static under reduced-motion) */}
+      <HeroGlow />
       <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24">
         <Reveal>
           <Link
