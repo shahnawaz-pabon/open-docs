@@ -3,6 +3,7 @@
 import { useCallback, useSyncExternalStore } from 'react'
 
 const STORAGE_KEY = 'open-docs:sidebar:collapsed'
+const PANEL_STORAGE_KEY = 'open-docs:sidebar:panel-collapsed'
 
 /**
  * Tiny localStorage-backed store for the set of collapsed sidebar folders.
@@ -78,10 +79,62 @@ export function useSidebarState() {
     write(next)
   }, [])
 
-  const isCollapsed = useCallback(
-    (key: string) => collapsed.has(key),
-    [collapsed],
-  )
+  const isCollapsed = useCallback((key: string) => collapsed.has(key), [collapsed])
 
   return { collapsed, isCollapsed, toggle, setCollapsed }
+}
+
+/*
+ * Separate boolean store for collapsing the whole sidebar panel (distinct from
+ * the per-folder collapse set above). Mirrors the same localStorage +
+ * useSyncExternalStore pattern so the preference persists and syncs across
+ * mounted instances and tabs.
+ */
+const panelListeners = new Set<() => void>()
+let panelCache: boolean | null = null
+
+function readPanel(): boolean {
+  if (typeof window === 'undefined') return false
+  if (panelCache !== null) return panelCache
+  try {
+    panelCache = localStorage.getItem(PANEL_STORAGE_KEY) === '1'
+  } catch {
+    panelCache = false
+  }
+  return panelCache
+}
+
+function writePanel(next: boolean) {
+  panelCache = next
+  try {
+    localStorage.setItem(PANEL_STORAGE_KEY, next ? '1' : '0')
+  } catch {
+    // ignore storage write failures (private mode, quota)
+  }
+  panelListeners.forEach((l) => l())
+}
+
+function subscribePanel(listener: () => void): () => void {
+  panelListeners.add(listener)
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === PANEL_STORAGE_KEY) {
+      panelCache = null // force re-read on next snapshot
+      listener()
+    }
+  }
+  window.addEventListener('storage', onStorage)
+  return () => {
+    panelListeners.delete(listener)
+    window.removeEventListener('storage', onStorage)
+  }
+}
+
+/**
+ * Persist whether the desktop sidebar panel is collapsed to a slim rail, so the
+ * choice survives navigation, reloads, and tab switches.
+ */
+export function useSidebarCollapsed() {
+  const collapsed = useSyncExternalStore(subscribePanel, readPanel, () => false)
+  const toggle = useCallback(() => writePanel(!readPanel()), [])
+  return { collapsed, toggle }
 }

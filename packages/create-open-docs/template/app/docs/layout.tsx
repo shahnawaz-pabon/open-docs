@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { SidebarNav } from '@/components/docs/sidebar-nav'
+import { DocsSidebar } from '@/components/docs/docs-sidebar'
 import { SiteHeader } from '@/components/site-header'
 import { getAllDocs } from '@/lib/content'
 import { buildNavTree } from '@/lib/navigation'
@@ -16,9 +16,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen">
       <SiteHeader tree={tree} />
       <div className="mx-auto flex max-w-[90rem] gap-8 px-4 sm:px-6">
-        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto py-8 pr-2 lg:block">
-          <SidebarNav tree={tree} />
-        </aside>
+        <DocsSidebar tree={tree} />
         {children}
       </div>
     </div>

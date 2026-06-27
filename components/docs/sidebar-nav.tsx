@@ -23,15 +23,23 @@ export function SidebarNav({ tree, onNavigate }: { tree: NavNode[]; onNavigate?:
 
   function renderNodes(nodes: NavNode[], depth: number) {
     return (
-      <ul className={cn('space-y-0.5', depth > 0 && 'mt-0.5 ml-3 border-l border-border pl-3')}>
+      <ul
+        className={cn(
+          'space-y-0.5',
+          depth > 0 && 'border-border/70 mt-1 ml-2 space-y-1 border-l pl-3',
+        )}
+      >
         {nodes.map((node) => {
           const key = node.slugPath ?? node.title
           const hasChildren = node.children.length > 0
           const collapsed = isCollapsed(key)
           const isActive = node.href ? normalize(node.href) === pathname : false
 
+          // Top-level groups (no link, with children) act as section headers.
+          const isSectionLabel = !node.href && depth === 0
+
           return (
-            <li key={key}>
+            <li key={key} className={cn(isSectionLabel && 'mt-5 first:mt-0')}>
               <div className="flex items-center">
                 {node.href ? (
                   <Link
@@ -39,16 +47,23 @@ export function SidebarNav({ tree, onNavigate }: { tree: NavNode[]; onNavigate?:
                     onClick={onNavigate}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'flex-1 rounded-md px-2 py-1.5 text-sm transition-colors',
+                      'relative flex-1 rounded-md px-3 py-1.5 text-sm transition-colors',
                       isActive
-                        ? 'bg-muted font-medium text-accent'
+                        ? 'bg-accent/10 text-accent before:bg-accent font-medium before:absolute before:top-1/2 before:left-0 before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full'
                         : 'text-muted-fg hover:bg-muted hover:text-fg',
                     )}
                   >
                     {node.title}
                   </Link>
                 ) : (
-                  <span className="flex-1 px-2 py-1.5 text-sm font-semibold text-fg">
+                  <span
+                    className={cn(
+                      'flex-1 px-3 py-1.5',
+                      isSectionLabel
+                        ? 'text-muted-fg/80 text-xs font-semibold tracking-wider uppercase'
+                        : 'text-fg text-sm font-semibold',
+                    )}
+                  >
                     {node.title}
                   </span>
                 )}
@@ -58,7 +73,7 @@ export function SidebarNav({ tree, onNavigate }: { tree: NavNode[]; onNavigate?:
                     onClick={() => toggle(key)}
                     aria-label={collapsed ? `Expand ${node.title}` : `Collapse ${node.title}`}
                     aria-expanded={!collapsed}
-                    className="rounded p-1 text-muted-fg transition-colors hover:bg-muted hover:text-fg"
+                    className="text-muted-fg hover:bg-muted hover:text-fg rounded p-1 transition-colors"
                   >
                     <ChevronDown
                       className={cn('size-4 transition-transform', collapsed && '-rotate-90')}
