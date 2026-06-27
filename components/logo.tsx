@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-/** The Open Docs brand mark — an open-book/document glyph in the brand accent. */
+/**
+ * The Open Docs brand mark — an open book whose two pages fan out from a
+ * centre spine, drawn in the brand accent. The pages use stepped opacity for a
+ * sense of depth. Colours come from the `accent` tokens so the mark follows the
+ * active theme automatically.
+ */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -12,16 +17,20 @@ export function LogoMark({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="32" height="32" rx="8" className="fill-accent" />
+      {/* Left page */}
       <path
-        d="M9 10.5C9 9.67 9.67 9 10.5 9H15v14h-4.5A1.5 1.5 0 0 1 9 21.5v-11Z"
+        d="M16 11.5C13.6 10 10.4 9.7 7.8 10.7v11.4c2.6-1 5.8-.7 8.2.8V11.5Z"
         className="fill-accent-fg"
-        opacity="0.9"
+        opacity="0.95"
       />
+      {/* Right page */}
       <path
-        d="M17 9h4.5c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5H17V9Z"
+        d="M16 11.5c2.4-1.5 5.6-1.8 8.2-.8v11.4c-2.6-1-5.8-.7-8.2.8V11.5Z"
         className="fill-accent-fg"
-        opacity="0.6"
+        opacity="0.65"
       />
+      {/* Centre spine */}
+      <rect x="15.4" y="10.6" width="1.2" height="12.4" rx="0.6" className="fill-accent-fg" />
     </svg>
   )
 }
