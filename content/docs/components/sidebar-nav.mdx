@@ -1,0 +1,131 @@
+---
+title: Sidebar Navigation
+description: The collapsible, icon-enhanced navigation tree that powers the docs sidebar.
+order: 7
+---
+
+# Sidebar Navigation
+
+`SidebarNav` renders the hierarchical documentation navigation tree with
+per-item icons, collapsible groups, and active-page highlighting. It's used by
+both the desktop sidebar and the mobile drawer, backed by the same nav data
+derived from your content structure.
+
+## Features
+
+- **Auto-generated icons** — each nav item gets a leading icon derived from its
+  slug or title (Rocket for getting-started, BookOpen for guides, Component for
+  components, etc.) with no manual configuration.
+- **Collapsible folders** — top-level sections with an index page are clickable
+  links whose right-hand chevron is a separate expand/collapse toggle, so you
+  can navigate to the section overview or drill into its children.
+- **Nested grouping** — child pages indent under a subtle left border, creating
+  clear visual hierarchy.
+- **Active state** — the current page highlights with the brand accent color
+  across the entire row.
+- **Persistent expand/collapse** — folder open/closed state persists in
+  localStorage and survives navigation, reloads, and tab switches.
+
+## Data source
+
+The nav tree is built server-side from your `content/docs/**/*.mdx` files by
+`lib/navigation.ts`. Folder titles and page ordering come from each folder's
+`meta.json` (`title`, `pages` array). The result is a nested `NavNode[]`
+structure passed as a prop:
+
+```ts
+interface NavNode {
+  title: string
+  href?: string // present for pages; absent for pure folder groupings
+  slugPath?: string
+  children: NavNode[]
+}
+```
+
+## Usage in layouts
+
+The sidebar is already wired in `app/docs/layout.tsx`. The tree is built once
+per render and shared with both the desktop `DocsSidebar` and the mobile
+`MobileNav` (via the header):
+
+```tsx
+import { DocsSidebar } from '@/components/docs/docs-sidebar'
+import { getAllDocs } from '@/lib/content'
+import { buildNavTree } from '@/lib/navigation'
+
+export default function DocsLayout({ children }) {
+  const tree = buildNavTree(getAllDocs())
+  return (
+    <>
+      <SiteHeader tree={tree} />
+      <DocsSidebar tree={tree} />
+      {children}
+    </>
+  )
+}
+```
+
+## Icon mapping
+
+Icons are derived presentationally via keyword matching against each node's
+`slugPath` and `title`. The first matching rule wins; unmatched items fall back
+to a generic `FileText` icon. Current mappings:
+
+| Pattern                                       | Icon        | Matches                 |
+| --------------------------------------------- | ----------- | ----------------------- |
+| `getting-started`, `quick-start`, `rocket`    | Rocket      | Getting Started section |
+| `install`, `download`, `setup`                | Download    | Installation pages      |
+| `project-structure`, `file-tree`, `structure` | FolderTree  | Structure docs          |
+| `deploy`, `publish`                           | UploadCloud | Deployment guides       |
+| `writing`, `markdown`, `content`              | PenLine     | Content authoring       |
+| `guide`, `overview`, `introduction`, `index`  | BookOpen    | Guide overviews         |
+| `component`                                   | Component   | Component library       |
+| `callout`, `alert`, `note`                    | Megaphone   | Callout docs            |
+| `card`                                        | LayoutGrid  | Cards docs              |
+| `step`                                        | ListOrdered | Steps docs              |
+| `code`                                        | Code2       | Code block docs         |
+| `badge`                                       | BadgeCheck  | Badge docs              |
+| _(fallback)_                                  | FileText    | Everything else         |
+
+To customize the icon for a specific page without touching the code, adjust its
+frontmatter `title` or its folder/file slug to match one of the patterns.
+
+## Behavior
+
+### Top-level folders with children
+
+When a folder has both an `href` (from an `index.mdx` page) and `children`, it
+renders as a split-target row:
+
+- **Click the label** → navigates to the folder's index page
+- **Click the chevron** (right side) → expands/collapses the children without
+  navigating
+
+This lets users jump to a section overview or explore its contents in place.
+
+### Nested pages
+
+Child pages indent under a left border and render as simple links. They inherit
+the same active-state styling and icon logic.
+
+### Keyboard & screen readers
+
+- Every expand/collapse button has an `aria-label` (`"Expand X"` / `"Collapse X"`)
+  and `aria-expanded` state.
+- Active links carry `aria-current="page"`.
+- The entire nav is wrapped in a `<nav aria-label="Documentation">` landmark.
+
+## Customization
+
+The component lives in `components/docs/sidebar-nav.tsx`. To change the icon
+mappings, edit the `ICON_RULES` array at the top of the file. To adjust
+spacing, hover states, or colors, modify the Tailwind classes in the render
+logic — all design tokens (`accent`, `muted-fg`, `border`) are defined in
+`styles/globals.css` and respond to the active theme.
+
+## Props
+
+| Prop         | Type         | Description                                                                                  |
+| ------------ | ------------ | -------------------------------------------------------------------------------------------- |
+| `tree`       | `NavNode[]`  | The navigation tree (built by `buildNavTree`).                                               |
+| `onNavigate` | `() => void` | Optional callback fired after a link is clicked (used by the mobile drawer to close itself). |

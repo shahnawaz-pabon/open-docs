@@ -8,6 +8,7 @@
     "steps",
     "code-block",
     "file-tree",
-    "badge"
+    "badge",
+    "sidebar-nav"
   ]
 }
