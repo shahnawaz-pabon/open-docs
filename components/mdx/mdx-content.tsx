@@ -22,6 +22,10 @@ export function MdxContent({ source }: { source: string }) {
       source={source}
       components={getMdxComponents()}
       options={{
+        // Docs MDX is first-party/trusted, so opt out of next-mdx-remote v6's
+        // `blockJS` hardening, which otherwise strips JSX expression attributes
+        // (e.g. `<FileTree tree={[...]} />`) and silently drops the data.
+        blockJS: false,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
           rehypePlugins: [rehypeSlug, [rehypePrettyCode, prettyCodeOptions]],
