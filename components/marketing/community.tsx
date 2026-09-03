@@ -18,8 +18,11 @@ export function Community() {
       <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-accent text-sm font-semibold tracking-wide uppercase">Community</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            <div className="bg-accent/10 text-accent ring-accent/20 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset">
+              <Heart className="size-3" />
+              Community driven
+            </div>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Built in the open, with you
             </h2>
             <p className="text-muted-fg mt-3 text-base">

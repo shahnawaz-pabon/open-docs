@@ -33,10 +33,11 @@ export function WhyOpenDocs() {
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div className="lg:sticky lg:top-24">
-              <p className="text-accent text-sm font-semibold tracking-wide uppercase">
+              <div className="bg-accent/10 text-accent ring-accent/20 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset">
+                <Eye className="size-3" />
                 Why Open Docs
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              </div>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
                 Documentation infrastructure without the lock-in
               </h2>
               <p className="text-muted-fg mt-4 text-base leading-relaxed">
