@@ -57,7 +57,7 @@ const FEATURES: Feature[] = [
   },
   {
     icon: Rocket,
-    title: 'One-click deployment',
+    title: 'One-click deploy',
     description:
       'Ship documentation instantly with built-in GitHub Actions workflows for testing, building, and publishing to GitHub Pages.',
   },
@@ -69,41 +69,61 @@ const FEATURES: Feature[] = [
   },
 ]
 
-/** Feature grid — the eight headline capabilities of Open Docs. */
+/** Feature grid — modern uniform cards with unique styling and hover effects. */
 export function Features() {
   return (
-    <section id="features" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
-      <Reveal>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything you need, nothing you don&apos;t
-          </h2>
-          <p className="mt-4 text-lg text-muted-fg">
-            A complete, batteries-included documentation stack — without the
-            framework tax.
-          </p>
-        </div>
-      </Reveal>
+    <section
+      id="features"
+      className="border-border from-background via-muted/10 to-background border-b bg-gradient-to-b"
+    >
+      <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+        <Reveal>
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="bg-accent/10 text-accent ring-accent/20 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset">
+              <Sparkles className="size-3" />
+              Everything included
+            </div>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Production-ready from{' '}
+              <span className="from-accent to-brand-400 bg-gradient-to-r bg-clip-text text-transparent">
+                day one
+              </span>
+            </h2>
+            <p className="text-muted-fg mt-3 text-base">
+              No framework tax. No vendor lock-in. Just the features you need.
+            </p>
+          </div>
+        </Reveal>
 
-      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-        {FEATURES.map((feature, i) => {
-          const Icon = feature.icon
-          return (
-            <Reveal key={feature.title} delay={(i % 4) * 0.05} className="bg-background">
-              <div className="group h-full p-6 transition-colors hover:bg-muted/40">
-                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-fg">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="mt-4 font-semibold tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-fg">
-                  {feature.description}
-                </p>
-              </div>
-            </Reveal>
-          )
-        })}
+        {/* Uniform grid with modern styling */}
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {FEATURES.map((feature, i) => {
+            const Icon = feature.icon
+            return (
+              <Reveal key={feature.title} delay={i * 0.05}>
+                <div className="group border-border from-background via-card to-background hover:border-accent/30 hover:shadow-accent/10 relative h-full overflow-hidden rounded-xl border bg-gradient-to-br p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  {/* Gradient overlay on hover */}
+                  <div className="from-accent/0 to-accent/5 absolute inset-0 bg-gradient-to-br via-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+
+                  {/* Decorative blur element */}
+                  <div className="bg-accent/10 absolute -top-6 -right-6 size-20 rounded-full opacity-0 blur-2xl transition-opacity group-hover:opacity-70" />
+
+                  <div className="relative">
+                    <div className="bg-accent/10 text-accent ring-accent/20 group-hover:bg-accent group-hover:text-accent-fg group-hover:ring-accent inline-flex size-12 items-center justify-center rounded-xl ring-1 transition-all duration-300 ring-inset group-hover:scale-110">
+                      <Icon className="size-5" />
+                    </div>
+                    <h3 className="text-fg mt-4 text-base font-semibold tracking-tight">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-fg mt-2 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

@@ -83,6 +83,18 @@
     --color-accent: var(--accent);
     --color-accent-fg: var(--accent-fg);
     --color-code-bg: var(--code-bg);
+
+    --animate-float: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   * {
