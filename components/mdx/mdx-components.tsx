@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { AnchorHTMLAttributes, ComponentPropsWithoutRef } from 'react'
 import { cn } from '@/lib/utils'
+import { Pre } from './pre'
 
 /**
  * Anchor-linked heading factory. `rehype-slug` injects the `id`; we add a
@@ -25,7 +26,7 @@ function heading(Tag: 'h1' | 'h2' | 'h3' | 'h4') {
             {children}
             <span
               aria-hidden
-              className="ml-2 text-muted-fg opacity-0 transition-opacity group-hover:opacity-100"
+              className="text-muted-fg ml-2 opacity-0 transition-opacity group-hover:opacity-100"
             >
               #
             </span>
@@ -49,7 +50,7 @@ function MdxLink({ href = '', children, ...props }: AnchorHTMLAttributes<HTMLAnc
         href={href}
         target="_blank"
         rel="noreferrer noopener"
-        className="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+        className="text-accent font-medium underline underline-offset-4 hover:opacity-80"
         {...props}
       >
         {children}
@@ -59,7 +60,7 @@ function MdxLink({ href = '', children, ...props }: AnchorHTMLAttributes<HTMLAnc
   return (
     <Link
       href={href}
-      className="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+      className="text-accent font-medium underline underline-offset-4 hover:opacity-80"
     >
       {children}
     </Link>
@@ -80,34 +81,26 @@ export const baseMdxComponents = {
     <p className="leading-7 [&:not(:first-child)]:mt-5" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<'ul'>) => (
-    <ul className="my-5 ml-6 list-disc space-y-2 marker:text-muted-fg" {...props} />
+    <ul className="marker:text-muted-fg my-5 ml-6 list-disc space-y-2" {...props} />
   ),
   ol: (props: ComponentPropsWithoutRef<'ol'>) => (
-    <ol className="my-5 ml-6 list-decimal space-y-2 marker:text-muted-fg" {...props} />
+    <ol className="marker:text-muted-fg my-5 ml-6 list-decimal space-y-2" {...props} />
   ),
   li: (props: ComponentPropsWithoutRef<'li'>) => <li className="leading-7" {...props} />,
   blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => (
-    <blockquote
-      className="my-6 border-l-2 border-accent pl-6 text-muted-fg italic"
-      {...props}
-    />
+    <blockquote className="border-accent text-muted-fg my-6 border-l-2 pl-6 italic" {...props} />
   ),
-  hr: (props: ComponentPropsWithoutRef<'hr'>) => (
-    <hr className="my-10 border-border" {...props} />
-  ),
+  hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="border-border my-10" {...props} />,
   table: (props: ComponentPropsWithoutRef<'table'>) => (
     <div className="my-6 w-full overflow-x-auto">
       <table className="w-full border-collapse text-sm" {...props} />
     </div>
   ),
   th: (props: ComponentPropsWithoutRef<'th'>) => (
-    <th
-      className="border border-border bg-muted px-4 py-2 text-left font-semibold"
-      {...props}
-    />
+    <th className="border-border bg-muted border px-4 py-2 text-left font-semibold" {...props} />
   ),
   td: (props: ComponentPropsWithoutRef<'td'>) => (
-    <td className="border border-border px-4 py-2" {...props} />
+    <td className="border-border border px-4 py-2" {...props} />
   ),
   // Inline code. Fenced code blocks are handled by rehype-pretty-code (<pre>).
   code: (props: ComponentPropsWithoutRef<'code'>) => {
@@ -115,15 +108,10 @@ export const baseMdxComponents = {
     if (isBlock) return <code {...props} />
     return (
       <code
-        className="rounded-md border border-border bg-code-bg px-1.5 py-0.5 font-mono text-[0.85em]"
+        className="border-border bg-code-bg rounded-md border px-1.5 py-0.5 font-mono text-[0.85em]"
         {...props}
       />
     )
   },
-  pre: (props: ComponentPropsWithoutRef<'pre'>) => (
-    <pre
-      className="my-6 overflow-x-auto rounded-xl border border-border bg-code-bg p-4 text-sm leading-relaxed [&>code]:bg-transparent [&>code]:p-0"
-      {...props}
-    />
-  ),
+  pre: Pre,
 }
