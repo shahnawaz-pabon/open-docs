@@ -1,6 +1,16 @@
 <div align="center">
-  <img src="./public/logo.svg" alt="Open Docs" width="180" />
+  <img src="./public/favicon.svg" alt="Open Docs" width="100" />
   <h1>Open Docs</h1>
+  
+  <p>
+    <a href="https://www.npmjs.com/package/@opendocsjs/create">
+      <img src="https://img.shields.io/npm/v/@opendocsjs/create?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181B&color=009086" alt="npm version" />
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=18181B&color=009086" alt="MIT License" />
+    </a>
+  </p>
+  
   <p><strong>The most modern, beautiful, user-friendly open-source documentation template.</strong></p>
   <p>Built on Next.js, MDX, and Tailwind CSS. Zero lock-in. MIT licensed.</p>
 </div>
